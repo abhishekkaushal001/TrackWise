@@ -6,6 +6,7 @@ import axios from "axios";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface Issue {
   title: string;
@@ -14,13 +15,16 @@ interface Issue {
 
 const NewIssuePage = () => {
   const router = useRouter();
+  const [isLoading, setLoading] = useState(false);
   const { register, control, handleSubmit } = useForm<Issue>();
 
   return (
     <form
       className=" max-w-xl space-y-3 "
       onSubmit={handleSubmit(async (data) => {
+        setLoading(true);
         await axios.post("/api/issues", data);
+        setLoading(false);
         router.push("/issues");
       })}
     >
@@ -34,7 +38,7 @@ const NewIssuePage = () => {
           <SimpleMDE placeholder="Description" {...field} />
         )}
       />
-      <Button>Submit New Issue</Button>
+      <Button>{(isLoading && "Processing...") || "Submit New Issue"}</Button>
     </form>
   );
 };
