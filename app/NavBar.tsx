@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
+import { SiFoodpanda } from "react-icons/si";
 import React from "react";
 import classNames from "classnames";
 
