@@ -3,17 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
-import { SiFoodpanda } from "react-icons/si";
 import React from "react";
 import classNames from "classnames";
 
 const NavBar = () => {
+  const pathName = usePathname();
+
   const links = [
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },
   ];
-
-  const pathName = usePathname();
 
   return (
     <nav className="flex space-x-6 border-b h-14 items-center mb-5 px-5 ">
@@ -23,7 +22,7 @@ const NavBar = () => {
       <ul className="flex space-x-6">
         {links.map((link) => (
           <Link
-            id={link.href}
+            key={link.href}
             href={link.href}
             className={classNames({
               "text-zinc-900": pathName === link.href,
