@@ -1,21 +1,22 @@
 "use client";
 
-import { Button, Callout, Text, TextField } from "@radix-ui/themes";
-import { useForm, Controller } from "react-hook-form";
+import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
+import { issueSchema } from "@/app/validationSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, Callout, TextField } from "@radix-ui/themes";
 import axios from "axios";
-import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { issueSchema } from "@/app/validationSchema";
-import ErrorMessage from "@/app/components/ErrorMessage";
-import Spinner from "@/app/components/Spinner";
+import delay from "delay";
 
 type Issue = z.infer<typeof issueSchema>;
 
-const NewIssuePage = () => {
+const NewIssuePage = async () => {
   const router = useRouter();
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -39,6 +40,8 @@ const NewIssuePage = () => {
       setError("An Unexpected Error occured.");
     }
   });
+
+  await delay(5000);
 
   return (
     <div className="max-w-xl ">
