@@ -12,7 +12,6 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import delay from "delay";
 
 type Issue = z.infer<typeof issueSchema>;
 
@@ -40,8 +39,6 @@ const NewIssuePage = async () => {
       setError("An Unexpected Error occured.");
     }
   });
-
-  await delay(5000);
 
   return (
     <div className="max-w-xl ">
