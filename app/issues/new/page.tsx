@@ -10,6 +10,8 @@ import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { issueSchema } from "@/app/validationSchema";
+import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
 
 type Issue = z.infer<typeof issueSchema>;
 
@@ -39,22 +41,17 @@ const NewIssuePage = () => {
           try {
             setLoading(true);
             await axios.post("/api/issues", data);
-            setLoading(false);
             router.push("/issues");
           } catch (error) {
-            setError("An Unexpected Error occured.");
             setLoading(false);
+            setError("An Unexpected Error occured.");
           }
         })}
       >
         <TextField.Root>
           <TextField.Input placeholder="Title" {...register("title")} />
         </TextField.Root>
-        {errors.title && (
-          <Text color="red" as="p" size="2">
-            {errors.title.message}
-          </Text>
-        )}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
           control={control}
@@ -62,12 +59,10 @@ const NewIssuePage = () => {
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
-        {errors.description && (
-          <Text color="red" as="p" size="2">
-            {errors.description.message}
-          </Text>
-        )}
-        <Button>{(isLoading && "Processing...") || "Submit New Issue"}</Button>
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
+        <Button disabled={isLoading}>
+          Submit New Issue {isLoading && <Spinner />}
+        </Button>
       </form>
     </div>
   );
