@@ -27,10 +27,9 @@ const IssuesPage = async () => {
           {issues.map((issue) => (
             <Table.Row key={issue.id}>
               <Table.RowHeaderCell>
-                <HybridLink
-                  href={`/issues/${issue.id}`}
-                  children={issue.title}
-                />
+                <HybridLink href={`/issues/${issue.id}`}>
+                  {issue.title}
+                </HybridLink>
                 <div className="block md:hidden">
                   <IssueStatusBadge status={issue.status} />
                 </div>
@@ -48,5 +47,7 @@ const IssuesPage = async () => {
     </div>
   );
 };
+
+export const dynamic = "force-dynamic";
 
 export default IssuesPage;

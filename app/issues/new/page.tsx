@@ -1,9 +1,11 @@
-"use client";
-
 import IssueForm from "../_components/IssueForm";
 
-const NewIssuePage = async () => {
-  return <IssueForm />;
+const NewIssuePage = () => {
+  return (
+    <>
+      <IssueForm />
+    </>
+  );
 };
 
 export default NewIssuePage;
