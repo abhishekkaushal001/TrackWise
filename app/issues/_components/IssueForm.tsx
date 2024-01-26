@@ -37,7 +37,11 @@ const IssueForm = async ({ issue }: Props) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
-      await axios.post("/api/issues", data);
+      if (issue) {
+        await axios.patch(`/api/issues/${issue.id}`, data);
+      } else {
+        await axios.post("/api/issues", data);
+      }
       router.push("/issues");
     } catch (error) {
       setLoading(false);
@@ -71,7 +75,8 @@ const IssueForm = async ({ issue }: Props) => {
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button disabled={isLoading}>
-          Submit Issue {isLoading && <Spinner />}
+          {issue ? "Update Issue" : "Submit New Issue"}{" "}
+          {isLoading && <Spinner />}
         </Button>
       </form>
     </div>
