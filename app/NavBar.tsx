@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
 import React from "react";
 import classNames from "classnames";
-import { Box, Container, Flex } from "@radix-ui/themes";
+import { Avatar, Box, Container, DropdownMenu, Flex } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Spinner from "./components/Spinner";
 
@@ -19,7 +19,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="border-b items-center mb-5 px-5 py-4">
+    <nav className="border-b items-center mb-5 px-5 py-3">
       <Container>
         <Flex justify="between" align="center">
           <Flex align="center" gap="3">
@@ -46,9 +46,29 @@ const NavBar = () => {
 
           <Box>
             {status === "loading" && <Spinner />}
+
             {status === "authenticated" && (
-              <Link href="/api/auth/signout">Log out</Link>
+              <DropdownMenu.Root>
+                <DropdownMenu.Trigger>
+                  <Avatar
+                    src={session.user!.image!}
+                    fallback={session.user!.name!.charAt(0)!}
+                    size="2"
+                    radius="full"
+                    className="cursor-pointer"
+                  />
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content>
+                  <DropdownMenu.Label>
+                    {session.user!.email!}
+                  </DropdownMenu.Label>
+                  <DropdownMenu.Item>
+                    <Link href="/api/auth/signout">Log out</Link>
+                  </DropdownMenu.Item>
+                </DropdownMenu.Content>
+              </DropdownMenu.Root>
             )}
+
             {status === "unauthenticated" && (
               <Link href="/api/auth/signin">Login</Link>
             )}
