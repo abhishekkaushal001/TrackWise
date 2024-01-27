@@ -32,9 +32,8 @@ const NavBar = () => {
                   <Link
                     href={link.href}
                     className={classNames({
-                      "text-zinc-900": pathName === link.href,
-                      "text-zinc-500": pathName !== link.href,
-                      "hover:text-zinc-800 transition-colors": true,
+                      "nav-link": true,
+                      "!text-zinc-900": pathName === link.href,
                     })}
                   >
                     {link.label}
@@ -70,7 +69,9 @@ const NavBar = () => {
             )}
 
             {status === "unauthenticated" && (
-              <Link href="/api/auth/signin">Login</Link>
+              <Link href="/api/auth/signin" className="nav-link">
+                Login
+              </Link>
             )}
           </Box>
         </Flex>
