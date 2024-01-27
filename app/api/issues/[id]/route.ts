@@ -1,11 +1,17 @@
 import { issueSchema } from "@/app/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
+import authOptions from "@/app/auth/authOptions";
+import { getServerSession } from "next-auth";
 
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const session = await getServerSession(authOptions);
+  if (!session)
+    return NextResponse.json({ error: "unAuthorized Access" }, { status: 401 });
+
   const body = await request.json();
   const validation = await issueSchema.safeParseAsync(body);
 
@@ -34,6 +40,10 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const session = await getServerSession(authOptions);
+  if (!session)
+    return NextResponse.json({ error: "unAuthorized Access" }, { status: 401 });
+
   if (!params.id)
     return NextResponse.json(
       { error: "Invalid Request, No Issue found." },
