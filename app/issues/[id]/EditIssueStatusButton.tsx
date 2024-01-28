@@ -7,17 +7,16 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const EditIssueStatusButton = ({ issue }: { issue: Issue }) => {
+  const changeStatus = (status: string) => {
+    axios
+      .patch(`/api/issues/${issue.id}`, { status })
+      .then((res) => toast.success("Status successfully changed."))
+      .catch((err) => toast.error("Changes could not be saved."));
+  };
+
   return (
     <>
-      <Select.Root
-        defaultValue=""
-        onValueChange={(status) => {
-          axios
-            .patch(`/api/issues/${issue.id}`, { status })
-            .then((res) => toast.success("Status successfully changed."))
-            .catch((err) => toast.error("Changes could not be saved."));
-        }}
-      >
+      <Select.Root defaultValue="" onValueChange={changeStatus}>
         <Select.Trigger
           color={statusMap[issue.status].color}
           variant="soft"
