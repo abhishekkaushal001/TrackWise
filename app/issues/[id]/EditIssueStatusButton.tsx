@@ -13,9 +13,12 @@ const EditIssueStatusButton = ({ issue }: { issue: Issue }) => {
         placeholder="Set Status"
       />
       <Select.Content color={statusMap[issue.status].color}>
-        <Select.Item value="OPEN">Open</Select.Item>
-        <Select.Item value="IN_PROGRESS">In progress</Select.Item>
-        <Select.Item value="CLOSED">Closed</Select.Item>
+        <Select.Group>
+          <Select.Label>Set Status</Select.Label>
+          <Select.Item value="OPEN">Open</Select.Item>
+          <Select.Item value="IN_PROGRESS">In progress</Select.Item>
+          <Select.Item value="CLOSED">Closed</Select.Item>
+        </Select.Group>
       </Select.Content>
     </Select.Root>
   );

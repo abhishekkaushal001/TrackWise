@@ -20,6 +20,14 @@ const UserAssignee = () => {
     fetch();
   }, []);
 
+  if (error) {
+    return (
+      <Select.Root>
+        <Select.Trigger placeholder="Some Error Occured!" />
+      </Select.Root>
+    );
+  }
+
   return (
     <Select.Root>
       <Select.Trigger placeholder="Assign User..." />
