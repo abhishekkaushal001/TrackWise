@@ -23,7 +23,7 @@ const NavBar = () => {
       <Container>
         <Flex justify="between" align="center">
           <Flex align="center" gap="3">
-            <Link href="/">
+            <Link href="/" className=" mr-3">
               <AiFillBug />
             </Link>
             <ul className="flex space-x-6">

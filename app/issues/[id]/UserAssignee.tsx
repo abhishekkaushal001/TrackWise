@@ -37,7 +37,7 @@ const UserAssignee = ({ issue }: { issue: Issue }) => {
             .patch(`/api/issues/${issue.id}`, {
               assignedToUserId: userId,
             })
-            .then((res) => toast.success("Status successfully changed."))
+            .then((res) => toast.success("User successfully assigned."))
             .catch((err) => toast.error("Changes could not be saved."));
         }}
       >
