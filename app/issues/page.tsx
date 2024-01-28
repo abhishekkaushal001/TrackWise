@@ -1,23 +1,49 @@
 import prisma from "@/prisma/client";
+import { Issue, Status } from "@prisma/client";
+import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { Table } from "@radix-ui/themes";
+import Link from "next/link";
 import IssueStatusBadge from "../components/IssueStatusBadge";
 import HybridLink from "../components/Link";
 import IssueActions from "./IssueActions";
-import { Status } from "@prisma/client";
 
-const IssuesPage = async ({
-  searchParams: { status },
-}: {
-  searchParams: { status: Status | "all" };
-}) => {
+interface Props {
+  searchParams: {
+    status: Status | "all";
+    orderBy: keyof Issue;
+  };
+}
+
+const columns: { label: string; value: keyof Issue; class?: string }[] = [
+  { label: "Issue", value: "title" },
+  { label: "Status", value: "status", class: "hidden md:table-cell" },
+  { label: "Created", value: "createdAt", class: "hidden md:table-cell" },
+];
+const values = columns.map((column) => column.value);
+
+const IssuesPage = async ({ searchParams }: Props) => {
+  const { status, orderBy } = searchParams;
   let issues;
 
   if (status !== "all" && status in Status) {
-    issues = await prisma.issue.findMany({
-      where: { status },
-    });
+    if (orderBy && values.includes(orderBy)) {
+      issues = await prisma.issue.findMany({
+        where: { status: status },
+        orderBy: { [orderBy]: "asc" },
+      });
+    } else {
+      issues = await prisma.issue.findMany({
+        where: { status: status },
+      });
+    }
   } else {
-    issues = await prisma.issue.findMany();
+    if (orderBy && values.includes(orderBy)) {
+      issues = await prisma.issue.findMany({
+        orderBy: { [orderBy]: "asc" },
+      });
+    } else {
+      issues = await prisma.issue.findMany();
+    }
   }
 
   return (
@@ -27,13 +53,24 @@ const IssuesPage = async ({
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell className="hidden md:table-cell">
-              Status
-            </Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell className="hidden md:table-cell">
-              Created
-            </Table.ColumnHeaderCell>
+            {columns.map((column) => (
+              <Table.ColumnHeaderCell
+                key={column.label}
+                className={column.class}
+              >
+                <Link
+                  href={{
+                    href: "/issues",
+                    query: { ...searchParams, orderBy: column.value },
+                  }}
+                >
+                  {column.label}
+                </Link>
+                {column.value === searchParams.orderBy && (
+                  <ArrowUpIcon className="inline" />
+                )}
+              </Table.ColumnHeaderCell>
+            ))}
           </Table.Row>
         </Table.Header>
         <Table.Body>
