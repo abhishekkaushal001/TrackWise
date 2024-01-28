@@ -1,8 +1,8 @@
-import { issueSchema } from "@/app/validationSchema";
-import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/prisma/client";
 import authOptions from "@/app/auth/authOptions";
+import { patchIssueSchema } from "@/app/validationSchema";
+import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
   request: NextRequest,
@@ -13,10 +13,19 @@ export async function PATCH(
     return NextResponse.json({ error: "unAuthorized Access" }, { status: 401 });
 
   const body = await request.json();
-  const validation = await issueSchema.safeParseAsync(body);
+  const validation = await patchIssueSchema.safeParseAsync(body);
 
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
+
+  const { title, description, assignedToUserId } = body;
+  if (assignedToUserId) {
+    const user = await prisma.user.findUnique({
+      where: { id: assignedToUserId },
+    });
+    if (!user)
+      return NextResponse.json({ error: "Invalid User Id" }, { status: 400 });
+  }
 
   const issue = await prisma.issue.findUnique({
     where: { id: parseInt(params.id) },
@@ -28,8 +37,9 @@ export async function PATCH(
   const updated = await prisma.issue.update({
     where: { id: parseInt(params.id) },
     data: {
-      title: body.title,
-      description: body.description,
+      title,
+      description,
+      assignedToUserId,
     },
   });
 
