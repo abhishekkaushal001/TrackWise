@@ -4,13 +4,19 @@ import { statusMap } from "@/app/components/IssueStatusBadge";
 import { Issue } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
 const EditIssueStatusButton = ({ issue }: { issue: Issue }) => {
+  const router = useRouter();
+
   const changeStatus = (status: string) => {
     axios
       .patch(`/api/issues/${issue.id}`, { status })
-      .then((res) => toast.success("Status successfully changed."))
+      .then((res) => {
+        toast.success("Status successfully changed.");
+        router.refresh();
+      })
       .catch((err) => toast.error("Changes could not be saved."));
   };
 
