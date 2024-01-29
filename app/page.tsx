@@ -1,3 +1,4 @@
+import LatestIssues from "./LatestIssues";
 import Pagination from "./components/Pagination";
 
 interface Props {
@@ -7,12 +8,8 @@ interface Props {
 export default function Home({ searchParams }: Props) {
   return (
     <div>
-      Hello world
-      <Pagination
-        itemCount={100}
-        currentPage={parseInt(searchParams.page) || 1}
-        pagesize={10}
-      />
+      <div>Hello world</div>
+      <LatestIssues />
     </div>
   );
 }
