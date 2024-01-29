@@ -4,6 +4,7 @@ import IssueChart from "./IssueChart";
 import IssueSummary from "./IssueSummary";
 import LatestIssues from "./LatestIssues";
 import { Metadata } from "next";
+import LandigHomePage from "./LandigHomePage";
 
 interface Props {
   searchParams: { page: string };
@@ -21,13 +22,17 @@ export default async function Home({ searchParams }: Props) {
   });
 
   return (
-    <Grid columns={{ initial: "1", sm: "2" }} gap="5">
-      <Flex direction="column" gap="5">
-        <IssueSummary open={open} inProgress={inProgress} closed={closed} />
-        <IssueChart open={open} inProgress={inProgress} closed={closed} />
-      </Flex>
-      <LatestIssues />
-    </Grid>
+    <>
+      <LandigHomePage />
+
+      <Grid columns={{ initial: "1", sm: "2" }} gap="5">
+        <Flex direction="column" gap="5">
+          <IssueSummary open={open} inProgress={inProgress} closed={closed} />
+          <IssueChart open={open} inProgress={inProgress} closed={closed} />
+        </Flex>
+        <LatestIssues />
+      </Grid>
+    </>
   );
 }
 
