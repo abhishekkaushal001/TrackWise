@@ -8,6 +8,7 @@ import HybridLink from "../components/Link";
 import IssueActions from "./IssueActions";
 import Pagination from "../components/Pagination";
 import IssueTable, { IssueQuery, values } from "./IssueTable";
+import { Metadata } from "next";
 
 interface Props {
   searchParams: IssueQuery;
@@ -69,5 +70,10 @@ const IssuesPage = async ({ searchParams }: Props) => {
 };
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "TrackWise - Issues",
+  description: "Get the details of all Issues.",
+};
 
 export default IssuesPage;

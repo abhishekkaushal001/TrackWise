@@ -1,8 +1,9 @@
+import prisma from "@/prisma/client";
+import { Flex, Grid } from "@radix-ui/themes";
 import IssueChart from "./IssueChart";
 import IssueSummary from "./IssueSummary";
 import LatestIssues from "./LatestIssues";
-import Pagination from "./components/Pagination";
-import prisma from "@/prisma/client";
+import { Metadata } from "next";
 
 interface Props {
   searchParams: { page: string };
@@ -20,9 +21,17 @@ export default async function Home({ searchParams }: Props) {
   });
 
   return (
-    <div>
-      <div>Hello world</div>
-      <IssueChart open={open} inProgress={inProgress} closed={closed} />
-    </div>
+    <Grid columns={{ initial: "1", sm: "2" }} gap="5">
+      <Flex direction="column" gap="5">
+        <IssueSummary open={open} inProgress={inProgress} closed={closed} />
+        <IssueChart open={open} inProgress={inProgress} closed={closed} />
+      </Flex>
+      <LatestIssues />
+    </Grid>
   );
 }
+
+export const metadata: Metadata = {
+  title: "TrackWise - Dashboard",
+  description: "Compact information of Issues & all the Issue stats.",
+};
