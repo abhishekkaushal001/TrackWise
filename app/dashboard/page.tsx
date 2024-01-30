@@ -29,7 +29,7 @@ const page = async () => {
         <Heading align="center" size="9" className="text-zinc-900">
           Welcome to Dashboard
         </Heading>
-        <Text size="4" className=" text-zinc-500">
+        <Text size="4" className=" text-zinc-500" align="center">
           Empower Your Workflow, Resolve Every Challenge
         </Text>
       </Flex>

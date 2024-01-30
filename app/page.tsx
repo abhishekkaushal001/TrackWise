@@ -1,3 +1,4 @@
+import HomePage2 from "./HomePage2";
 import LandigHomePage from "./LandigHomePage";
 import Logo from "./components/Logo";
 
@@ -9,7 +10,7 @@ export default async function Home({ searchParams }: Props) {
   return (
     <>
       <LandigHomePage />
-      <Logo />
+      <HomePage2 />
     </>
   );
 }
