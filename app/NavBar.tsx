@@ -1,12 +1,11 @@
 "use client";
 
+import { Avatar, Box, Container, DropdownMenu, Flex } from "@radix-ui/themes";
+import classNames from "classnames";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AiFillBug } from "react-icons/ai";
-import React from "react";
-import classNames from "classnames";
-import { Avatar, Box, Container, DropdownMenu, Flex } from "@radix-ui/themes";
-import { useSession } from "next-auth/react";
+import { SiFoodpanda } from "react-icons/si";
 import Spinner from "./components/Spinner";
 
 const NavBar = () => {
@@ -14,7 +13,7 @@ const NavBar = () => {
   const { status, data: session } = useSession();
 
   const links = [
-    { label: "Dashboard", href: "/" },
+    { label: "Dashboard", href: "/dashboard" },
     { label: "Issues", href: "/issues" },
   ];
 
@@ -24,7 +23,7 @@ const NavBar = () => {
         <Flex justify="between" align="center">
           <Flex align="center" gap="3">
             <Link href="/" className=" mr-3">
-              <AiFillBug />
+              <SiFoodpanda className=" w-7 h-7" />
             </Link>
             <ul className="flex space-x-6">
               {links.map((link) => (

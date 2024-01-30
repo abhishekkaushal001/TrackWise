@@ -8,7 +8,7 @@ import {
   Text,
 } from "@radix-ui/themes";
 import prisma from "@/prisma/client";
-import IssueStatusBadge from "./components/IssueStatusBadge";
+import IssueStatusBadge from "../components/IssueStatusBadge";
 import Link from "next/link";
 
 const LatestIssues = async () => {

@@ -9,7 +9,7 @@ const LandigHomePage = () => {
       columns={{ initial: "1", sm: "3" }}
       align="center"
       gap="2"
-      mb="9"
+      mb="4"
       mt="4"
     >
       <Image
