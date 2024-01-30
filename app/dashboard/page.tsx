@@ -1,4 +1,4 @@
-import { Grid, Flex, Heading, Text, Box } from "@radix-ui/themes";
+import { Grid, Flex, Heading, Text, Box, Card } from "@radix-ui/themes";
 import IssueChart from "./IssueChart";
 import IssueSummary from "./IssueSummary";
 import LatestIssues from "./LatestIssues";
@@ -26,13 +26,14 @@ const page = async () => {
         mt="2"
         mb="9"
       >
-        <Heading align="center" size="9" className="text-zinc-900">
+        <h1 className="text-zinc-900 text-center text-5xl font-bold md:text-7xl ">
           Welcome to Dashboard
-        </Heading>
+        </h1>
         <Text size="4" className=" text-zinc-500" align="center">
           Empower Your Workflow, Resolve Every Challenge
         </Text>
       </Flex>
+
       <Grid columns={{ initial: "1", sm: "2" }} gap="5">
         <Flex direction="column" gap="5">
           <IssueSummary open={open} inProgress={inProgress} closed={closed} />
