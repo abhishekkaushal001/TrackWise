@@ -1,7 +1,7 @@
-import { Box, Button, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import HomePageLogo from "@/app/components/HomePageLogo.jpg";
+import { Button, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
-import HomePageLogo from "@/app/components/HomePageLogo.jpg";
 
 const LandigHomePage = () => {
   return (
