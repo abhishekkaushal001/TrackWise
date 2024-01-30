@@ -20,11 +20,7 @@ const LandigHomePage = () => {
         height={1100}
       />
       <Flex direction="column" gap="3" align="center">
-        <Heading
-          size="9"
-          className=" font-bold text-9xl text-pretty"
-          align="center"
-        >
+        <Heading size="9" align="center">
           Track Wisely
         </Heading>
         <Text className=" text-opacity-80 ps-2 text-lg">
