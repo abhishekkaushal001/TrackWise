@@ -22,7 +22,7 @@ const EditIssueStatusButton = ({ issue }: { issue: Issue }) => {
 
   return (
     <>
-      <Select.Root defaultValue="" onValueChange={changeStatus}>
+      <Select.Root onValueChange={changeStatus}>
         <Select.Trigger
           color={statusMap[issue.status].color}
           variant="soft"
@@ -30,7 +30,7 @@ const EditIssueStatusButton = ({ issue }: { issue: Issue }) => {
         />
         <Select.Content>
           <Select.Group>
-            <Select.Label>Set Status</Select.Label>
+            <Select.Label>Status</Select.Label>
             <Select.Item value="OPEN">Open</Select.Item>
             <Select.Item value="IN_PROGRESS">In progress</Select.Item>
             <Select.Item value="CLOSED">Closed</Select.Item>

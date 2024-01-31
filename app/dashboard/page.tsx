@@ -45,6 +45,8 @@ const page = async () => {
   );
 };
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "TrackWise - Dashboard",
   description: "Compact information of Issues & all the Issue stats.",
