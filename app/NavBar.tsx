@@ -1,16 +1,14 @@
 "use client";
 
-import { Avatar, Box, Container, DropdownMenu, Flex } from "@radix-ui/themes";
+import { Container, Flex } from "@radix-ui/themes";
 import classNames from "classnames";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SiFoodpanda } from "react-icons/si";
-import Spinner from "./components/Spinner";
+import UserDropdown from "./components/UserDropdown";
 
 const NavBar = () => {
   const pathName = usePathname();
-  const { status, data: session } = useSession();
 
   const links = [
     { label: "Dashboard", href: "/dashboard" },
@@ -41,38 +39,7 @@ const NavBar = () => {
               ))}
             </ul>
           </Flex>
-
-          <Box>
-            {status === "loading" && <Spinner />}
-
-            {status === "authenticated" && (
-              <DropdownMenu.Root>
-                <DropdownMenu.Trigger>
-                  <Avatar
-                    src={session.user!.image!}
-                    fallback={session.user!.name!.charAt(0)!}
-                    size="2"
-                    radius="full"
-                    className="cursor-pointer"
-                  />
-                </DropdownMenu.Trigger>
-                <DropdownMenu.Content>
-                  <DropdownMenu.Label>
-                    {session.user!.email!}
-                  </DropdownMenu.Label>
-                  <DropdownMenu.Item>
-                    <Link href="/api/auth/signout">Log out</Link>
-                  </DropdownMenu.Item>
-                </DropdownMenu.Content>
-              </DropdownMenu.Root>
-            )}
-
-            {status === "unauthenticated" && (
-              <Link href="/api/auth/signin" className="nav-link">
-                Login
-              </Link>
-            )}
-          </Box>
+          <UserDropdown />
         </Flex>
       </Container>
     </nav>
