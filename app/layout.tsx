@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import NavBar from "./NavBar";
 import ReactQueryClientProvider from "./QueryClientProvider";
 import AuthProvider from "./auth/Provider";
+import PageFooter from "./components/PageFooter";
 import "./globals.css";
 import "./theme-config.css";
 
@@ -30,9 +31,10 @@ export default function RootLayout({
           <AuthProvider>
             <Theme appearance="light" accentColor="yellow">
               <NavBar />
-              <main className="p-5">
+              <main className="p-5" style={{ minHeight: "57vh" }}>
                 <Container>{children}</Container>
               </main>
+              <PageFooter />
             </Theme>
           </AuthProvider>
         </ReactQueryClientProvider>

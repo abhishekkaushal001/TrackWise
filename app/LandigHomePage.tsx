@@ -23,7 +23,7 @@ const LandigHomePage = () => {
         <Heading size="9" align="center">
           Track Wisely
         </Heading>
-        <Text className=" text-opacity-80 ps-2 text-lg">
+        <Text className=" text-opacity-80 ps-2 text-lg" align="center">
           Create and track all Issues in one place.
         </Text>
         <Button radius="full" size="4" className=" w-2/3">

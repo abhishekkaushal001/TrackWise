@@ -16,7 +16,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="border-b items-center mb-5 px-5 py-3">
+    <nav className="border-b items-center mb-5 mt-1 px-5 py-3">
       <Container>
         <Flex justify="between" align="center">
           <Flex align="center" gap="3">

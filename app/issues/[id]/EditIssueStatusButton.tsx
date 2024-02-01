@@ -20,13 +20,17 @@ const EditIssueStatusButton = ({ issue }: { issue: Issue }) => {
       .catch((err) => toast.error("Changes could not be saved."));
   };
 
+  const configData = statusMap[issue.status];
+
   return (
     <>
       <Select.Root onValueChange={changeStatus}>
         <Select.Trigger
-          color={statusMap[issue.status].color}
+          color={configData.color}
           variant="soft"
           placeholder="Set Status"
+          className={"hover:shadow-md transition-all"}
+          style={{ backgroundColor: configData.rgb }}
         />
         <Select.Content>
           <Select.Group>

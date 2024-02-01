@@ -10,6 +10,11 @@ const LatestIssues = async () => {
     take: 5,
   });
 
+  const getUrl = (id: number) => {
+    const url = "/issues/" + id;
+    return url.toString();
+  };
+
   return (
     <Card>
       <Heading mb="3">Latest Issues</Heading>
@@ -20,7 +25,7 @@ const LatestIssues = async () => {
               <Table.Cell>
                 <Flex justify="between">
                   <Flex direction="column" gap="2" align="start">
-                    <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+                    <Link href={getUrl(issue.id)}>{issue.title}</Link>
                     <IssueStatusBadge status={issue.status} />
                   </Flex>
                   {issue.assignedToUser && (

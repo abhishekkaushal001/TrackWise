@@ -27,7 +27,11 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red" disabled={isDeleting}>
+          <Button
+            color="red"
+            disabled={isDeleting}
+            className=" bg-red-500 hover:bg-red-600 transition-colors"
+          >
             Delete Issue
             {isDeleting && <Spinner />}
           </Button>
@@ -40,12 +44,21 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
 
           <Flex gap="3" mt="4" justify="end">
             <AlertDialog.Cancel>
-              <Button variant="soft" color="gray">
+              <Button
+                variant="soft"
+                color="gray"
+                className=" bg-stone-200 hover:bg-stone-300 transition-colors"
+              >
                 Cancel
               </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
-              <Button variant="solid" color="red" onClick={handleDelete}>
+              <Button
+                variant="solid"
+                color="red"
+                onClick={handleDelete}
+                className=" bg-red-500 hover:bg-red-600 transition-colors"
+              >
                 Delete Issue
               </Button>
             </AlertDialog.Action>
@@ -65,6 +78,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
               <Button
                 variant="soft"
                 color="gray"
+                className=" bg-stone-200 hover:bg-stone-300 transition-colors"
                 onClick={() => setError(false)}
               >
                 Ok

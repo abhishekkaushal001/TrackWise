@@ -4,12 +4,7 @@ import Logo from "./components/Logo";
 
 const HomePage2 = () => {
   return (
-    <Grid
-      columns={{ initial: "1", sm: "5" }}
-      align="center"
-      justify="center"
-      mb="5"
-    >
+    <Grid columns={{ initial: "1", sm: "5" }} align="center" justify="center">
       <Box className="md:col-span-3">
         <Logo />
       </Box>

@@ -2,7 +2,7 @@ import { Box, Card, Flex, Skeleton } from "@radix-ui/themes";
 
 const IssueDetailsLoadingPage = () => {
   return (
-    <Box className=" max-w-xl">
+    <Box className=" max-w-xl extend-vh">
       <Skeleton className=" h-7" />
       <Flex gap="3" my="2">
         <Skeleton className=" w-12" />

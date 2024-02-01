@@ -1,9 +1,9 @@
-import { Grid, Flex, Heading, Text, Box, Card } from "@radix-ui/themes";
+import prisma from "@/prisma/client";
+import { Flex, Grid, Text } from "@radix-ui/themes";
+import { Metadata } from "next";
 import IssueChart from "./IssueChart";
 import IssueSummary from "./IssueSummary";
 import LatestIssues from "./LatestIssues";
-import prisma from "@/prisma/client";
-import { Metadata } from "next";
 
 const page = async () => {
   const open = await prisma.issue.count({
