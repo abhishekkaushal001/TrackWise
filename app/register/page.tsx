@@ -1,19 +1,19 @@
-import RegisterPageImage from "@/app/components/belem-tower-8492812_1920.jpg";
-import { Grid } from "@radix-ui/themes";
-import Image from "next/image";
-import RegisterForm from "./RegisterForm";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+import RegisterUserLoadingpage from "./loading";
 
-const RegisterUserPage = () => {
-  return (
-    <Grid columns={{ initial: "1", sm: "2" }} align="center" justify="center">
-      <Image
-        src={RegisterPageImage}
-        alt="Welcome aboard!"
-        className=" hidden md:block"
-      />
-      <RegisterForm />
-    </Grid>
-  );
+const RegisterUserPage = dynamic(() => import("@/app/register/RegisterUser"), {
+  ssr: false,
+  loading: () => <RegisterUserLoadingpage />,
+});
+
+const RegistrationPage = () => {
+  return <RegisterUserPage />;
 };
 
-export default RegisterUserPage;
+export const metadata: Metadata = {
+  title: "Register User",
+  description: "TrackWise: Create new account.",
+};
+
+export default RegistrationPage;

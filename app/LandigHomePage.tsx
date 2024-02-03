@@ -27,7 +27,7 @@ const LandigHomePage = () => {
           Create and track all Issues in one place.
         </Text>
         <Button radius="full" size="4" className=" w-2/3">
-          <Link href={`/api/auth/signin`}>Get Started</Link>
+          <Link href={"/register"}>Get Started</Link>
         </Button>
       </Flex>
       <Image

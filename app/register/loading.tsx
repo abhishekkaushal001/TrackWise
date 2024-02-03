@@ -2,8 +2,16 @@ import { Box, Flex, Grid, Skeleton } from "@radix-ui/themes";
 
 const RegisterUserLoadingpage = () => {
   return (
-    <Grid columns={{ initial: "1", sm: "2" }} align="center" justify="center">
-      <Skeleton className="hidden min-h-screen md:block" />
+    <Grid
+      columns={{ initial: "1", sm: "2" }}
+      align="center"
+      justify="center"
+      className="-mt-10 md:-mb-16"
+    >
+      <Skeleton
+        className="hidden md:block"
+        style={{ height: "780px", objectFit: "cover" }}
+      />
       <Flex
         direction="column"
         className=" py-12 px-6"
@@ -13,7 +21,7 @@ const RegisterUserLoadingpage = () => {
         height="100%"
       >
         <Skeleton className=" rounded-full mb-7 h-14 w-14" />
-        <Skeleton className="w-1/2 h-9" />
+        <Skeleton className="w-2/3 h-8" />
 
         <Skeleton className="h-6 w-16 self-start " mt="7" />
         <Skeleton className="h-9 w-full" mt="1" />

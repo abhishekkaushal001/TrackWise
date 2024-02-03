@@ -2,20 +2,6 @@ import Link from "next/link";
 import { SiFoodpanda } from "react-icons/si";
 
 const RegisterForm = () => {
-  /*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
