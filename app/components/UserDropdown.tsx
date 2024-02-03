@@ -1,10 +1,10 @@
 "use client";
 
-import prisma from "@/prisma/client";
-import { Avatar, Box, DropdownMenu } from "@radix-ui/themes";
+import { Avatar, Box, Button, DropdownMenu, Flex } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Spinner from "./Spinner";
+import UserDropdownMenu from "./UserDropdownMenu";
 
 const UserDropdown = () => {
   const { status, data: session } = useSession();
@@ -36,11 +36,23 @@ const UserDropdown = () => {
         </DropdownMenu.Root>
       )}
 
-      {status === "unauthenticated" && (
-        <Link href="/api/auth/signin" className="nav-link">
-          Login
-        </Link>
-      )}
+      <Box className="md:hidden">
+        {status === "unauthenticated" && <UserDropdownMenu />}
+      </Box>
+
+      <Box className=" hidden md:inline-block">
+        {status === "unauthenticated" && (
+          <Flex gap="5" align="center">
+            <Link href="/register" className="nav-link">
+              Register
+            </Link>
+
+            <Link href="/api/auth/signin" className="nav-link">
+              Login
+            </Link>
+          </Flex>
+        )}
+      </Box>
     </Box>
   );
 };
