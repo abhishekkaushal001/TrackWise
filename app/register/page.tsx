@@ -1,15 +1,20 @@
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
+import dynamicFn from "next/dynamic";
 import RegisterUserLoadingpage from "./loading";
 
-const RegisterUserPage = dynamic(() => import("@/app/register/RegisterUser"), {
-  ssr: false,
-  loading: () => <RegisterUserLoadingpage />,
-});
+const RegisterUserPage = dynamicFn(
+  () => import("@/app/register/RegisterUser"),
+  {
+    ssr: false,
+    loading: () => <RegisterUserLoadingpage />,
+  }
+);
 
 const RegistrationPage = () => {
   return <RegisterUserPage />;
 };
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Register User",
