@@ -36,7 +36,12 @@ const UserDropdown = () => {
           )}
           {(image === null || image === undefined) && (
             <DropdownMenu.Trigger>
-              <IconButton radius="full" variant="soft">
+              <IconButton
+                radius="full"
+                variant="soft"
+                style={{ backgroundColor: "#ffee0047" }}
+                className=" hover:shadow-md hover:shadow-yellow-200 transition-shadow"
+              >
                 <Text className="cursor-pointer">
                   {session.user?.name!.charAt(0)!}
                 </Text>
