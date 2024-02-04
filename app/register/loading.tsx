@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Skeleton } from "@radix-ui/themes";
+import { Flex, Grid, Skeleton } from "@radix-ui/themes";
 
 const RegisterUserLoadingpage = () => {
   return (
