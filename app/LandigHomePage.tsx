@@ -1,9 +1,12 @@
 import HomePageLogo from "@/app/components/HomePageLogo.jpg";
 import { Button, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
+import authOptions from "./auth/authOptions";
 
-const LandigHomePage = () => {
+const LandigHomePage = async () => {
+  const session = await getServerSession(authOptions);
   return (
     <Grid
       columns={{ initial: "1", sm: "3" }}
@@ -27,7 +30,7 @@ const LandigHomePage = () => {
           Create and track all Issues in one place.
         </Text>
         <Button radius="full" size="4" className=" w-2/3">
-          <Link href={"/register"}>Get Started</Link>
+          <Link href={session ? "/dashboard" : "/register"}>Get Started</Link>
         </Button>
       </Flex>
       <Image

@@ -1,6 +1,9 @@
 import { Metadata } from "next";
+import { getServerSession } from "next-auth";
 import dynamicFn from "next/dynamic";
+import authOptions from "../auth/authOptions";
 import RegisterUserLoadingpage from "./loading";
+import { redirect } from "next/navigation";
 
 const RegisterUserPage = dynamicFn(
   () => import("@/app/register/RegisterUser"),
@@ -10,7 +13,13 @@ const RegisterUserPage = dynamicFn(
   }
 );
 
-const RegistrationPage = () => {
+const RegistrationPage = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (session) {
+    return redirect("/me");
+  }
+
   return <RegisterUserPage />;
 };
 
