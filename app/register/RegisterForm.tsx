@@ -126,6 +126,7 @@ const RegisterForm = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
+                style={{ backgroundColor: "#000000" }}
                 className="flex w-full cursor-pointer align-middle justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm"
               >
                 Sign up {isSubmitting && <Spinner />}
